@@ -26,7 +26,7 @@ function LoginPage(){
             className: 'inputDesabilitado'
         });
 
-        const URL = `https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up`;
+        const URL = `http://localhost:5000/login`;
 
         axios.post(URL, {email: dados.email, password: dados.password} ).then((response) => {
             localStorage.setItem('userdata', JSON.stringify({
@@ -89,7 +89,7 @@ function LoginPage(){
                     </button>
                 )}
             </Form>
-            <Link to="/">
+            <Link to="/cadastro">
                 <p>Primeira vez? Cadastre-se!</p>
             </Link>
         </LoginContainer>

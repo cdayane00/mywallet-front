@@ -38,20 +38,20 @@ function CadastroPage(){
             className: 'inputDesabilitado'
         });
 
-        const URL = `https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up`;
+        const URL = `http://localhost:5000/cadastro`;
 
         axios.post(URL,{
             name: dados.name,
             email: dados.email,
             password: dados.password
         }).then((response) => {
-            console.log(response.dados);
+            console.log(response.data);
             setcarregando({
                 ...carregando,
                 loading: false,
                 className: ''
             });
-            navigate('/login');
+            navigate('/');
         }).catch((erro) => {
             console.log({message: 'Deu ruim', erro});
             setcarregando({
@@ -71,7 +71,7 @@ function CadastroPage(){
                 className: 'botaoDesabilitado'
             });
         }
-        else if(dados.confirmaPassword !== '' && dados === dados.confirmaPassword){
+        if(dados.confirmaPassword !== '' && dados === dados.confirmaPassword){
             setDados({
                 ...dados,
                 erro: false
@@ -121,12 +121,12 @@ function CadastroPage(){
                     onChange={(e) => setDados({...dados, confirmaPassword: e.target.value})}
                 />
 
-                {dados.erro ? (
+                {/* {dados.erro ? (
                     <span className="msg">As senhas não são iguais</span>
-                ) : null}
+                ) : null} */}
 
                 {carregando.loading === false ? (
-                    <button type="submit" disabled={botaoCadastro.desabilitado} className={botaoCadastro.className}>
+                    <button type="submit" className={botaoCadastro.className}>
                         Cadastrar
                     </button>
                 ) : (
@@ -139,7 +139,7 @@ function CadastroPage(){
                     </button>
                 )}
             </Form>
-            <Link to="/login">
+            <Link to="/">
             <p>já tem conta? Entre agora!</p>
             </Link>
         </CadastroContainer>
